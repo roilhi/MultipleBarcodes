@@ -3,6 +3,10 @@ from barcode import Code128
 from barcode.writer import ImageWriter
 dataFrame = pd.read_excel('TheCodes.xlsx')
 results = list(dataFrame['codes'])
-for item in results:
-    codes = Code128(item, writer=ImageWriter())
-    image = Code128.save(codes,f'barcode{item}.png')
+resultsStr = []
+for result in results:
+    resultsStr.append(str(result))
+writer = ImageWriter()
+for itemx in resultsStr:
+    codes = Code128(itemx, writer)
+    image = Code128.save(codes,f'barcode{itemx}.png')
